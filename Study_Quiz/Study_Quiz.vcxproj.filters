@@ -18,5 +18,11 @@
     <ClCompile Include="Study_Quiz1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TicTaToc_R.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TicTaToc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

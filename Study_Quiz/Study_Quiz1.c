@@ -12,8 +12,8 @@ int main(){
 		len = strlen(list[size]);
 		for (i = Where[size] - 1; i < len; i++)
 			list[size][i] = list[size][i + 1];
-
 	}
+
 	printf("\n");
 	for (size = 0; size < Case; size++)
 		printf("%d %s\n", size + 1 , list[size]);
