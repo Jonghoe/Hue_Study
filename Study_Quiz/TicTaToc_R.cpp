@@ -53,32 +53,61 @@ class Board{
 				Value == mvBoard[0][0] * mvBoard[1][1] * mvBoard[2][2] ||
 				Value == mvBoard[0][2] * mvBoard[1][1] * mvBoard[2][0];
 		}
-		int win(int _turn){
-			int Ret_V;
+		Point Find_Point(int _turn){
+			Point False = { -1, -1 };
 			for (int i = 0; i < Num_Poss_Choice; i++){
 				if (mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] == 0){
 					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = _turn;
 					if (Is_Win(_turn)){
 						mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
-						return _turn;
+						Point tmp = { Poss_Choice[i].row, Poss_Choice[i].col };
+						return tmp;
 					}
-					else{
-						Ret_V = win(Change_Turn(_turn));
-						if (Ret_V != _turn)
-							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
-					}
+					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
 				}
 			}
-			return TIE;
+			return False;
+		}
+		int win(int _turn){
+			int Ret_V;
+			Point False = { -1, -1 };
+			for (int i = 0; i < Num_Poss_Choice; i++){
+				if (mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] == 0){
+					if (Find_Point(_turn).row == -1){
+						Num_Stone++;
+						mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = _turn;
+						//Print_Board();
+						Ret_V = win(Change_Turn(_turn));
+						if (Ret_V != _turn){
+							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
+							//Print_Board();
+							Num_Stone--;
+						}
+						else{
+							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
+							//Print_Board();
+							Num_Stone--;
+							return _turn;
+						}
+					}
+					else
+						return _turn;
+				}
+			}
+			if (Num_Stone == 9)
+				return TIE;
+			else
+				return Change_Turn(_turn);
 		}
 		
 		int Who_Win(){
 			int i;
-			if (Num_Stone <= 2)
+			if (Num_Stone <= 1)
 				return TIE;
 			if (win(turn)==turn)
 				return turn;
 			else{
+				//Print_Board();
 				for ( i = 0; i < Num_Poss_Choice; i++){
 					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = turn;
 					if (win(Change_Turn(turn)) != Change_Turn(turn))
@@ -93,6 +122,7 @@ class Board{
 			
 		}
 		void Print_Board(){
+			cout << endl;
 			for (int row = 0; row < H; row++){
 				for (int col = 0; col < W;col++)
 					switch (mvBoard[row][col]){
@@ -102,6 +132,8 @@ class Board{
 				}
 				printf("\n");
 			}
+			cout << endl;
+
 	
 		}
 		

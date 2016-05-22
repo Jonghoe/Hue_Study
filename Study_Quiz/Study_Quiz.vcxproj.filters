@@ -24,5 +24,8 @@
     <ClCompile Include="TicTaToc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MaxSum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
