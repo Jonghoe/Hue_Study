@@ -27,5 +27,13 @@
     <ClCompile Include="MaxSum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sufix_to_postfix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

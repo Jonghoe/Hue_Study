@@ -53,39 +53,58 @@ class Board{
 				Value == mvBoard[0][0] * mvBoard[1][1] * mvBoard[2][2] ||
 				Value == mvBoard[0][2] * mvBoard[1][1] * mvBoard[2][0];
 		}
-		Point Find_Point(int _turn){
+		bool Find_Point(int _turn,Point* Ret_V){
 			Point False = { -1, -1 };
 			for (int i = 0; i < Num_Poss_Choice; i++){
 				if (mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] == 0){
 					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = _turn;
 					if (Is_Win(_turn)){
 						mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
-						Point tmp = { Poss_Choice[i].row, Poss_Choice[i].col };
-						return tmp;
-					}
+						Ret_V->row = Poss_Choice[i].row;
+						Ret_V->col = Poss_Choice[i].col;
+						return true;
+					};
 					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
 				}
 			}
-			return False;
+			return false;
 		}
 		int win(int _turn){
 			int Ret_V;
+			Point Tmp;
 			Point False = { -1, -1 };
 			for (int i = 0; i < Num_Poss_Choice; i++){
 				if (mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] == 0){
-					if (Find_Point(_turn).row == -1){
+					if (Find_Point(Change_Turn(_turn),&Tmp)){
 						Num_Stone++;
-						mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = _turn;
-						//Print_Board();
+						mvBoard[Tmp.row][Tmp.col] = _turn;
+						Print_Board();
 						Ret_V = win(Change_Turn(_turn));
 						if (Ret_V != _turn){
 							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
-							//Print_Board();
+							Print_Board();
 							Num_Stone--;
 						}
 						else{
 							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
-							//Print_Board();
+							Print_Board();
+							Num_Stone--;
+							return _turn;
+						}
+					}
+					else if (!Find_Point(_turn,&Tmp)){
+						Num_Stone++;
+						mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = _turn;
+						Print_Board();
+						Ret_V = win(Change_Turn(_turn));
+						if (Ret_V != _turn){
+							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
+							Print_Board();
+							Num_Stone--;
+						}
+						else{
+							mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = 0;
+							Print_Board();
 							Num_Stone--;
 							return _turn;
 						}
@@ -102,12 +121,12 @@ class Board{
 		
 		int Who_Win(){
 			int i;
-			if (Num_Stone <= 1)
+			if (Num_Stone < 1)
 				return TIE;
 			if (win(turn)==turn)
 				return turn;
 			else{
-				//Print_Board();
+				Print_Board();
 				for ( i = 0; i < Num_Poss_Choice; i++){
 					mvBoard[Poss_Choice[i].row][Poss_Choice[i].col] = turn;
 					if (win(Change_Turn(turn)) != Change_Turn(turn))

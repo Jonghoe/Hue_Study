@@ -5,6 +5,11 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Study_Quiz", "Study_Quiz.vcxproj", "{9C54F3FD-9820-42E6-BD54-502B39667241}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25E04A55-EA3A-4A3C-8A2A-8F57D723EC64}"
+	ProjectSection(SolutionItems) = preProject
+		Stack.h = Stack.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
