@@ -43,3 +43,21 @@ int main(){
 		printf("%d\n", Max);
 	}
 }
+
+
+
+#include<stdio.h>
+#include<string.h>
+int AS(int Start, int D, int n){
+	int i = 0, Val = Start;
+	for (i = 0; i < n; i++)
+		Val += D;
+	return Val;
+}
+int main(){
+	int A, i;
+	for (i = 1; i < 6; i++){
+		A = AS(0, AS(0, 1, i), i);
+		printf("%d\n", A);
+	}
+}

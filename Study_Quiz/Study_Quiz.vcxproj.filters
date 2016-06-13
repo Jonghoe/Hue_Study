@@ -30,6 +30,15 @@
     <ClCompile Include="sufix_to_postfix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
