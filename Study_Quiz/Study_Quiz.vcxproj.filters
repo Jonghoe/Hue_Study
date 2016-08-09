@@ -39,10 +39,42 @@
     <ClCompile Include="Jump.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Batteri.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TPATH.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpStone.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exe07.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3N_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BASEBALL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FAMILYLOAD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ARC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WORDCHAIN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="input.in">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
