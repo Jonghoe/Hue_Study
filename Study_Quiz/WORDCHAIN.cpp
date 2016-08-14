@@ -14,7 +14,7 @@ struct node_tag{
 	size_t nIn, nOut;
 	std::vector<Edge*> OutE;
 };
-#define DIFF(x,y) ((x)-(y))*((x)-(y))
+#define DIFF(x,y) ((x)-(y))*((y)-(x))
 #define IS_OK(x,y) ((x)>0 ||(y)>0)
 #define IS_Last(nIn,nOut) ((nIn == 1) && (nOut == 0))
 #define IS_First(nIn,nOut) ((nIn == 0) && (nOut == 1))
@@ -43,7 +43,7 @@ Node* FindStart(Node* n, Edge* e){
 			FL = 1;
 		}
 		//도착점으로 판단되지만 이미 도착점이 있는경우
-		else if (FL != 0 && IS_First(n[i].nIn, n[i].nOut))
+		else if (FL != 0 && IS_Last(n[i].nIn, n[i].nOut))
 			return NULL;
 
 		//in , out 차이가 1 초과 인 노드가 있을시 끝말잇기 불가능
@@ -57,7 +57,7 @@ Node* FindStart(Node* n, Edge* e){
 	return Ret_V == NULL ? tmp: Ret_V;
 }
 
-void FindNext(Node* Start, int& or){
+void FindNext(Node* Start, int* or){
 	int i;
 
 	for (i = 0; i < Start->nOut; ++i){
@@ -65,28 +65,27 @@ void FindNext(Node* Start, int& or){
 		Node* tNext = edge->end;
 		//사용하지 않은 edge 중 마지막 node를 향하지 않는 
 		if (edge->used ==false && !IS_Last(tNext->nIn, tNext->nOut)){
-			AnswerOrder[or] = edge->id;
+			AnswerOrder[*or] = edge->id;
 			edge->used = true;
-			FindNext(tNext,++or);
+			FindNext(tNext,&(++(*or)));
 			edge->used = false;
 		}
 		//사용하지 않은 edge 이고 마지막 순서 인경우
-		else if(edge->used == false && or == numWord -1 && IS_Last(tNext->nIn, tNext->nOut)){
-			AnswerOrder[or] = edge->id;
+		else if(edge->used == false && *or == numWord -1 && IS_Last(tNext->nIn, tNext->nOut)){
+			AnswerOrder[*or] = edge->id;
 			edge->used = true;
 			return;
 		}
-
 	}
-	--or;
+	--*or;
 }
+
 int FindChain(Node* n, Edge* e){
 	Node* First = FindStart(n, e);
-	int i = 0;
 	int or = 0;
 	if (First == NULL)
 		return false;
-	FindNext(First, or);
+	FindNext(First, &or);
 	return true;
 }
 int main()
