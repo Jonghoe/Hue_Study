@@ -10,6 +10,7 @@ int main()
 		order[0] = -1;
 		for (int i = 1; i < numP; ++i)
 			scanf("%d", &order[i]);
+	
 		for (int i = 0; i < numT; ++i){
 			int f1, f2, tmp;
 			int count[100000];
